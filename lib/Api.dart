@@ -7,6 +7,7 @@ const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {
   pesquisar(String pesquisa) async {
+    // ignore: prefer_interpolation_to_compose_strings
     http.Response response = await http.get(Uri.parse(URL_BASE +
         "search"
             "?part=snippet"
