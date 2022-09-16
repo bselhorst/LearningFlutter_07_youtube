@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:app7_youtube/CustomSearchDelegate.dart';
 import 'package:app7_youtube/telas/Biblioteca.dart';
 import 'package:app7_youtube/telas/EmAlta.dart';
 import 'package:app7_youtube/telas/Inicio.dart';
@@ -36,16 +37,13 @@ class _HomeState extends State<Home> {
         title: Image.asset("images/youtube.png", width: 98, height: 22),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.videocam),
-          ),
-          IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              String? res = await showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
+            },
             icon: Icon(Icons.search),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.account_circle),
           ),
         ],
       ),
