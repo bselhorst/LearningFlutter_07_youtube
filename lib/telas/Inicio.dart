@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
+import 'package:webviewtube/webviewtube.dart';
 import '../model/Video.dart';
 
 class Inicio extends StatefulWidget {
@@ -40,22 +40,30 @@ class _InicioState extends State<Inicio> {
                 itemBuilder: (context, index) {
                   List<Video> videos = snapshot.data!;
                   Video video = videos[index];
-                  return Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(video.imagem!),
+                  return GestureDetector(
+                    onTap: () {
+                      print("clicando");
+                      WebviewtubeVideoPlayer(
+                        videoId: video.id!,
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(video.imagem!),
+                            ),
                           ),
                         ),
-                      ),
-                      ListTile(
-                        title: Text(video.titulo!),
-                        subtitle: Text(video.canal!),
-                      ),
-                    ],
+                        ListTile(
+                          title: Text(video.titulo!),
+                          subtitle: Text(video.canal!),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) => Divider(
